@@ -105,6 +105,15 @@ export type UserDonation = {
   personId: UUID
 }
 
+export type BankImportStatus = {
+  status: string
+  message?: string
+  amount: number
+  currency: string
+  createdAt: DateTime
+  extPaymentIntentId: string
+}
+
 export type UserDonationResult = {
   donations: UserDonation[]
   total: number

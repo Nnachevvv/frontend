@@ -47,7 +47,7 @@ export default function GridAppbar() {
             <Receipt
               sx={addIconStyles}
               fontSize="large"
-              onClick={() => router.push(routes.admin.transactions.create)}
+              onClick={() => router.push(routes.admin.donations.index)}
             />
           </Tooltip>
           <Tooltip title={t('donations:cta:add') || ''}>

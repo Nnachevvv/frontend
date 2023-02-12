@@ -21,7 +21,7 @@ import {
 } from 'components/bank-transactions-file/types'
 import { useUploadBankTransactionsFiles } from 'service/donation'
 import BankTransactionsFileList from 'components/file-upload/BankTransactionsFileList'
-import { BankTransactionsFileFormData, BankTransactionsUploadImage } from 'gql/donations'
+import { BankImportStatus, BankTransactionsFileFormData } from 'gql/donations'
 
 const validationSchema: yup.SchemaOf<BankTransactionsFileFormData> = yup.object().defined().shape({
   bankTransactionsFileId: yup.string().required(),
@@ -42,7 +42,7 @@ export default function BankTransactionsFileForm({
   const { t } = useTranslation()
 
   const fileUploadMutation = useMutation<
-    AxiosResponse<BankTransactionsUploadImage[]>,
+    AxiosResponse<string>,
     AxiosError<ApiErrors>,
     UploadBankTransactionsFiles
   >({
@@ -56,13 +56,15 @@ export default function BankTransactionsFileForm({
     { setFieldError }: FormikHelpers<BankTransactionsFileFormData>,
   ) => {
     try {
-      await fileUploadMutation.mutateAsync({
+      const response = await fileUploadMutation.mutateAsync({
         files,
         types,
         bankTransactionsFileId: values.bankTransactionsFileId,
       })
-
-      router.push(routes.admin.donations.index)
+      console.log('00000000000')
+      console.log(response.data)
+      console.log('00000000000')
+      router.push({ pathname: routes.admin.transactions.index, query: response.data })
     } catch (error) {
       console.error(error)
       if (isAxiosError(error)) {
@@ -85,7 +87,7 @@ export default function BankTransactionsFileForm({
             color: theme.palette.primary.dark,
             textAlign: 'center',
           })}>
-          {t('donations:form-heading-bank-transactions-file')}
+          {t('transactions:form-heading-bank-transactions-file')}
         </Typography>
       </Grid>
       <GenericForm
@@ -96,7 +98,7 @@ export default function BankTransactionsFileForm({
           <Grid item xs={12}>
             <FormTextField
               type="text"
-              label={t('donations:bankTransactionsFileId')}
+              label={t('transactions:bankTransactionsFileId')}
               name="bankTransactionsFileId"
               autoComplete="bankTransactionsFileId"
             />
@@ -113,7 +115,7 @@ export default function BankTransactionsFileForm({
                   })),
                 ])
               }}
-              buttonLabel={t('donations:addFiles')}
+              buttonLabel={t('transactions:addFiles')}
             />
             <BankTransactionsFileList
               filesType={types}
@@ -132,12 +134,12 @@ export default function BankTransactionsFileForm({
           <Grid item xs={12}>
             <SubmitButton
               fullWidth
-              label="donations:cta.submit"
+              label="transactions:cta.submit"
               loading={fileUploadMutation.isLoading}
             />
           </Grid>
-          <Link href={routes.admin.campaigns.index} passHref>
-            <Button fullWidth={true}>{t('donations:cta:cancel')}</Button>
+          <Link href={routes.admin.donations.index} passHref>
+            <Button fullWidth={true}>{t('transactions:cta:cancel')}</Button>
           </Link>
         </Grid>
       </GenericForm>

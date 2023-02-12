@@ -9,7 +9,7 @@ export default function AddBankTransactionsFile() {
 
   return (
     <AdminLayout>
-      <AdminContainer title={t('donations:donations')}>
+      <AdminContainer title={t('Банкови транзакции')}>
         <Container maxWidth="md" sx={{ py: 5 }}>
           <BankTransactionsFileForm />
         </Container>

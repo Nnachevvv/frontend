@@ -72,6 +72,11 @@ export const adminCards = [
   { label: 'Организатори', icon: Group, href: routes.admin.organizers.index },
   { label: 'ЮЛНЦ', icon: Group, href: routes.admin.company.create },
   { label: 'Банкови сметки', icon: Payment, href: routes.admin.bankaccounts.index },
+  {
+    label: 'Банкови транзакции',
+    icon: Payment,
+    href: routes.admin.transactions.create,
+  },
   { label: 'Преводи', icon: LocalAtmIcon, href: routes.admin.withdrawals.index },
   { label: 'Разходи', icon: Paid, href: routes.admin.expenses.index },
   { label: 'Трезори', icon: Shield, href: routes.admin.vaults.index },
