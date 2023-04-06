@@ -1,22 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { signIn } from 'next-auth/react'
 import { useTranslation } from 'next-i18next'
-import { Box, Button, Container, Grid } from '@mui/material'
+import { Box, Button, Collapse, Container, Grid } from '@mui/material'
 
 import { baseUrl } from 'common/routes'
 import type { RegisterPageProps } from 'pages/register'
 import Layout from 'components/client/layout/Layout'
+import * as yup from 'yup'
 
 import RegisterForm from './RegisterForm'
+import RadioButtonGroup from 'components/common/form/RadioButtonGroup'
+import theme from 'common/theme'
+import { useField } from 'formik'
 
 export default function RegisterPage({ providers }: RegisterPageProps) {
-  const { t } = useTranslation()
+  const [profileField] = useField('providers')
+
+  const profiles = [
+    { value: 'personl', label: 'Personal' },
+    { value: 'organisation', label: 'PayPal' },
+  ]
 
   return (
-    <Layout title={t('auth:cta.register')} metaDescription={t('auth:cta.register')}>
+    <Layout
+      title={t('auth:cta.create-new-profile')}
+      metaDescription={t('auth:cta.create-new-profile')}>
       <Container maxWidth="sm">
-        <RegisterForm />
+        <Box marginTop={theme.spacing(4)}>
+          <RadioButtonGroup name="profile" columns={profiles.length} options={profiles} />
+        </Box>
+        <Collapse unmountOnExit in={profileField.value === 'personl'} timeout="auto">
+          <RegisterForm />
+        </Collapse>
         <Box mt={4}>
           <Grid container direction="column" spacing={1}>
             {providers &&

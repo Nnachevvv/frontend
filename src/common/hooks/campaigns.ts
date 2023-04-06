@@ -41,8 +41,10 @@ export function useCampaignList() {
     [endpoints.campaign.listCampaigns.url],
     campaignsOrderQueryFunction,
     {
-      // Add 15 minutes of cache time
-      staleTime: 1000 * 60 * 15,
+      // Add 20 minutes of cache time
+      cacheTime: 20 * (60 * 1000),
+      // Add 15 minutes of stale time
+      staleTime: 15 * (60 * 1000),
     },
   )
 }
@@ -102,11 +104,11 @@ export function useCampaignDetailsPage(id: string) {
 }
 
 export function useCampaignDonationHistory(
-  campaignId: string,
+  campaignId?: string,
   pageindex?: number,
   pagesize?: number,
 ) {
   return useQuery<CampaignDonationHistoryResponse>([
-    endpoints.donation.getDonations(campaignId, DonationStatus.succeeded, pageindex, pagesize).url,
+    endpoints.donation.getDonations(DonationStatus.succeeded, campaignId, pageindex, pagesize).url,
   ])
 }

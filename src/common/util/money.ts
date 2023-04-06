@@ -14,6 +14,25 @@ export const money = (number: number, currency = 'BGN', divisionFactor = 100) =>
   )
 }
 
+//TODO rework this
+export const moneyWithThousandSeperator = (num: number) => {
+  // Convert number to string and split it into integer and fractional parts
+  if (num === undefined) {
+    num = 0
+  }
+
+  const [integer, fractional] = num.toFixed(2).split('.')
+
+  // Insert a space character every three digits in the integer part
+  const integerWithSeparator = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+
+  // Combine the integer and fractional parts with a decimal point
+  const formattedNumber =
+    fractional === '00' ? integerWithSeparator : `${integerWithSeparator}.${fractional}`
+
+  return formattedNumber
+}
+
 export const moneyPublic = (
   number: number,
   currency = 'BGN',
