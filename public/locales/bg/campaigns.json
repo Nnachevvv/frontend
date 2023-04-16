@@ -1,4 +1,5 @@
 {
+  "completed-campaigns": "Завършили кампании",
   "of": "от",
   "subtitle": "Помогнете на нуждаещ се",
   "form-heading": "Предложете нова кампания",
@@ -97,6 +98,8 @@
     "status": "Статус:",
     "messages": "Послания:",
     "gallery": "Галерия",
+    "report-irregularity": "Сигнализирай за злоупотреба",
+    "financial-report": "Финансови отчети",
     "report-campaign": "Докладвайте кампанията",
     "feedback": "Обратна връзка",
     "images": {

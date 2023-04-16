@@ -12,6 +12,8 @@ import {
 } from 'gql/campaigns'
 import { DonationStatus } from 'gql/donations.enums'
 import { apiClient } from 'service/apiClient'
+import { useCurrentPerson } from 'common/util/useCurrentPerson'
+import { isAdmin } from 'common/util/roles'
 
 // NOTE: shuffling the campaigns so that each gets its fair chance to be on top row
 export const campaignsOrderQueryFunction: QueryFunction<CampaignResponse[]> = async ({
@@ -111,4 +113,26 @@ export function useCampaignDonationHistory(
   return useQuery<CampaignDonationHistoryResponse>([
     endpoints.donation.getDonations(DonationStatus.succeeded, campaignId, pageindex, pagesize).url,
   ])
+}
+
+export function useCanEditCampaign(slug: string) {
+  const { data: session } = useSession()
+
+  const { data: userData } = useCurrentPerson()
+  const { data: campaignData } = useViewCampaign(slug)
+
+  if (!session || !session.user) {
+    return false
+  }
+
+  if (!userData || !campaignData || !userData.user) {
+    return false
+  }
+
+  const canEdit =
+    userData.user.id === campaignData.campaign.organizer?.person.id ||
+    session?.user?.realm_access?.roles?.includes('podkrepi-admin') ||
+    isAdmin(session)
+
+  return canEdit
 }

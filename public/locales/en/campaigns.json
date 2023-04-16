@@ -1,4 +1,5 @@
 {
+  "completed-campaigns": "Completed campaign",
   "of": "of",
   "subtitle": "Help a person in need",
   "form-heading": "Create new campaign",
@@ -92,6 +93,8 @@
     "profile": "Profile:",
     "status": "Status:",
     "gallery": "Gallery",
+    "report-irregularity": "Report irregularity",
+    "financial-report": "Financial report",
     "report-campaign": "Report the campaign",
     "feedback": "Feedback",
     "images": {

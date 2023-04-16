@@ -23,6 +23,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
         'validation',
         'campaigns',
         'irregularity',
+        'expenses',
       ])),
       dehydratedState: dehydrate(client),
     },

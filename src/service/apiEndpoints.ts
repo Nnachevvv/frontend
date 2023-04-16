@@ -31,6 +31,10 @@ export const endpoints = {
     downloadFile: (fileId: string) => <Endpoint>{ url: `/campaign-file/${fileId}`, method: 'GET' },
     deleteFile: (fileId: string) => <Endpoint>{ url: `/campaign-file/${fileId}`, method: 'DELETE' },
     getDonations: (id: string) => <Endpoint>{ url: `/campaign/donations/${id}`, method: 'GET' },
+    listCampaignExpenses: (slug: string) =>
+      <Endpoint>{ url: `/campaign/${slug}/expenses`, method: 'GET' },
+    listCampaignApprovedExpenses: (slug: string) =>
+      <Endpoint>{ url: `/campaign/${slug}/expenses/approved`, method: 'GET' },
   },
   campaignType: {
     listCampaignTypes: <Endpoint>{ url: '/campaign-type/list', method: 'GET' },
@@ -89,6 +93,23 @@ export const endpoints = {
       <Endpoint>{ url: `/bank-transactions-file/${bankTransactionsFileId}`, method: 'POST' },
     exportToExcel: <Endpoint>{ url: '/donation/export-excel', method: 'GET' },
   },
+  bankTransactions: {
+    transactionsList: (
+      paginationData?: PaginationData,
+      filterData?: FilterData,
+      searchData?: string,
+    ) => {
+      const { pageIndex, pageSize } = (paginationData as PaginationData) || {}
+      const { status, type, date } = (filterData as FilterData) || {}
+      const { from, to } = date || {}
+
+      return <Endpoint>{
+        url: `/bank-transaction/list?pageindex=${pageIndex}&pagesize=${pageSize}&status=${status}&type=${type}&from=${from}&to=${to}&search=${searchData}`,
+        method: 'GET',
+      }
+    },
+    exportToExcel: <Endpoint>{ url: '/bank-transaction/export-excel', method: 'GET' },
+  },
   documents: {
     documentsList: <Endpoint>{ url: '/document', method: 'GET' },
     getDocument: (slug: string) => <Endpoint>{ url: `/document/${slug}`, method: 'GET' },
@@ -137,6 +158,13 @@ export const endpoints = {
     viewExpense: (id: string) => <Endpoint>{ url: `/expenses/${id}`, method: 'GET' },
     editExpense: (id: string) => <Endpoint>{ url: `/expenses/${id}`, method: 'PATCH' },
     deleteExpense: (id: string) => <Endpoint>{ url: `/expenses/${id}`, method: 'DELETE' },
+    uploadFile: (expenseId: string) =>
+      <Endpoint>{ url: `/expenses/${expenseId}/files/`, method: 'POST' },
+    downloadFile: (fileId: string) =>
+      <Endpoint>{ url: `/expenses/download-file/${fileId}`, method: 'GET' },
+    listExpenseFiles: (id: string) => <Endpoint>{ url: `/expenses/${id}/files`, method: 'GET' },
+    deleteExpenseFile: (fileId: string) =>
+      <Endpoint>{ url: `/expenses/file/${fileId}`, method: 'DELETE' },
   },
   benefactor: {
     benefactorList: <Endpoint>{ url: '/benefactor', method: 'GET' },
@@ -172,6 +200,8 @@ export const endpoints = {
     list: <Endpoint>{ url: '/person', method: 'GET' },
     createBeneficiary: <Endpoint>{ url: '/beneficiary/create-beneficiary', method: 'POST' },
     viewPerson: (slug: string) => <Endpoint>{ url: `/person/${slug}`, method: 'GET' },
+    viewPersonByKeylockId: (sub: string) =>
+      <Endpoint>{ url: `/person/by-keylock-id/${sub}`, method: 'GET' },
     editPerson: (id: string) => <Endpoint>{ url: `/person/${id}`, method: 'PUT' },
     createPerson: <Endpoint>{ url: '/person', method: 'POST' },
     deletePerson: (id: string) => <Endpoint>{ url: `/person/${id}`, method: 'DELETE' },
