@@ -81,6 +81,7 @@ export const endpoints = {
         method: 'GET',
       },
     getUserDonation: (id: string) => <Endpoint>{ url: `/donation/user/${id}`, method: 'GET' },
+    getDonatedUsers: <Endpoint>{ url: `/donation/users-donated`, method: 'GET' },
     editDonation: (id: string) => <Endpoint>{ url: `/donation/${id}`, method: 'PATCH' },
     deleteDonation: <Endpoint>{ url: `/donation/delete`, method: 'POST' },
     userDonations: <Endpoint>{ url: 'donation/user-donations', method: 'GET' },
@@ -109,9 +110,7 @@ export const endpoints = {
     editCity: (id: string) => <Endpoint>{ url: `/city/${id}`, method: 'PATCH' },
     deleteCity: (id: string) => <Endpoint>{ url: `/city/${id}`, method: 'DELETE' },
   },
-  statistics: {
-    getContributorsNumber: <Endpoint>{ url: `/statistics/contributors`, method: 'GET' },
-  },
+
   withdrawals: {
     withdrawalsList: <Endpoint>{ url: '/withdrawal', method: 'GET' },
     getWithdrawal: (id: string) => <Endpoint>{ url: `/withdrawal/${id}`, method: 'GET' },

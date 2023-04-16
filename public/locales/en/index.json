@@ -41,5 +41,14 @@
     "heading": "Join Podkrepi.bg",
     "text": "To join the team of volunteers, fill in the application form with your details and we will contact you.",
     "become-volunteer": "Become a volunteer"
+  },
+  "platform-statistics": {
+    "heading": "What we achieved so far?",
+    "text": "We thoroughly examine each campaign before it becomes active on our platform, paying out every last lev of the funds collected without withholding a penny for our efforts. We believed that, by doing so, we earn your trust and make donations in Bulgaria a transperant initiative.",
+    "donate-to-those-in-need": "Help to those in need",
+    "campaigns": "campaings",
+    "donations": "donations",
+    "active-contributors": "donors",
+    "donated-leva": "donated leva,"
   }
 }

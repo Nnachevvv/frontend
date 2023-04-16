@@ -10,8 +10,10 @@ import { authQueryFnFactory } from 'service/restRequests'
 import {
   CheckoutSessionInput,
   CheckoutSessionResponse,
+  DonatedUsersResult,
   DonationPrice,
   DonationResponse,
+  DonorsCountResult,
   UserDonationResult,
 } from 'gql/donations'
 import { createCheckoutSession } from 'service/donation'
@@ -81,4 +83,8 @@ export function useUserDonations() {
   return useQuery<UserDonationResult>([endpoints.donation.userDonations.url], {
     queryFn: authQueryFnFactory(session?.accessToken),
   })
+}
+
+export function useDonorsCount() {
+  return useQuery<DonorsCountResult>([endpoints.donation.getDonatedUsers.url])
 }

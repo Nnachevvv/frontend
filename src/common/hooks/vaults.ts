@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react'
 import { QueryClient, useQuery } from '@tanstack/react-query'
 import { endpoints } from 'service/apiEndpoints'
 import { authQueryFnFactory } from 'service/restRequests'
-import { VaultResponse } from 'gql/vault'
+import { VaultMoneyResponse, VaultResponse } from 'gql/vault'
 
 export function useVaultsList() {
   const { data: session } = useSession()
@@ -28,7 +28,7 @@ export async function prefetchVaultsList(client: QueryClient, token?: string) {
 }
 
 export function getAllDonatedMoney() {
-  return useQuery<number>([endpoints.vaults.getAllDonatedMoney.url])
+  return useQuery<VaultMoneyResponse>([endpoints.vaults.getAllDonatedMoney.url])
 }
 
 export async function prefetchVaultById(client: QueryClient, slug: string, token?: string) {
