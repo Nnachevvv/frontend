@@ -79,6 +79,5 @@ export const fromMoney = (number: number, divisionFactor = 100): number => {
  * @param number number
  */
 export const numberWithSpacesBetween = (number?: string | number): string | undefined => {
-  console.log(number)
   return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }

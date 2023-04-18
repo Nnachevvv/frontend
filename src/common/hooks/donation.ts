@@ -85,6 +85,6 @@ export function useUserDonations() {
   })
 }
 
-export function useDonorsCount() {
+export function useDonatedUsersCount() {
   return useQuery<DonorsCountResult>([endpoints.donation.getDonatedUsers.url])
 }

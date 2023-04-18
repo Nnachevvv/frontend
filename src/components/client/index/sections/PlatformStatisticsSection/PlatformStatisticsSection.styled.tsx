@@ -14,13 +14,6 @@ export const Root = styled('section')(() => ({
   },
 }))
 
-export const PlatformStatisticsWrapper = styled(Grid)(() => ({
-  display: 'flex',
-  [theme.breakpoints.down('md')]: {
-    flexWrap: 'wrap',
-  },
-}))
-
 export const Heading = styled(Typography)(() => ({
   display: 'inline-block',
   color: theme.palette.primary.dark,
@@ -31,20 +24,6 @@ export const Subtitle = styled(Typography)(() => ({
   color: theme.palette.primary.dark,
   fontSize: theme.typography.pxToRem(16),
   lineHeight: theme.spacing(3),
-}))
-
-export const SubtitleSectionNumber = styled(Typography)(() => ({
-  display: 'inline',
-  fontSize: theme.typography.pxToRem(40),
-  textAlign: 'left',
-  color: theme.palette.primary.light,
-  fontWeight: 'bold',
-}))
-
-export const SubtitleSectionText = styled(Typography)(() => ({
-  display: 'inline',
-  textAlign: 'left',
-  ml: 1,
 }))
 
 export const DonateButton = styled(LinkButton)(() => ({
@@ -58,10 +37,13 @@ export const DonateButton = styled(LinkButton)(() => ({
   },
 
   [theme.breakpoints.up('md')]: {
-    fontSize: theme.typography.pxToRem(22),
+    marginTop: theme.spacing(7),
+    fontSize: theme.typography.pxToRem(15),
+    minWidth: theme.spacing(40),
   },
 
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.up('sm')]: {
+    fontSize: theme.typography.pxToRem(20),
     minWidth: theme.spacing(40),
   },
 }))
