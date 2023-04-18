@@ -111,7 +111,7 @@ export type UserDonationResult = {
   total: number
 }
 
-export type DonorsCountResult = {
+export type UsersDonatedResult = {
   count: number
 }
 

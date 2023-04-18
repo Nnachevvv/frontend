@@ -43,10 +43,8 @@ export function useCampaignList() {
     [endpoints.campaign.listCampaigns.url],
     campaignsOrderQueryFunction,
     {
-      // Add 20 minutes of cache time
-      cacheTime: 20 * (60 * 1000),
-      // Add 15 minutes of stale time
-      staleTime: 15 * (60 * 1000),
+      // Add 15 minutes of cache time
+      staleTime: 1000 * 60 * 15,
     },
   )
 }
